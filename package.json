@@ -4,7 +4,8 @@
   "description": "an annoying answering question bot",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node index.js"
   },
   "repository": {
     "type": "git",
