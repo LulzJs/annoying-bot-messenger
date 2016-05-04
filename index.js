@@ -12,6 +12,27 @@ app.get('/', function (req, res) {
     res.send('This is TestBot Server');
 });
 
+// Facebook Webhook
+app.get('/webhook', function (req, res) {
+    if (req.query['hub.verify_token'] === 'testbot_verify_token') {
+        res.send(req.query['hub.challenge']);
+    } else {
+        res.send('Invalid verify token');
+    }
+});
+
+// handler receiving messages
+app.post('/webhook', function (req, res) {
+    var events = req.body.entry[0].messaging;
+    for (i = 0; i < events.length; i++) {
+        var event = events[i];
+        if (event.message && event.message.text) {
+            sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
+        }
+    }
+    res.sendStatus(200);
+});
+
 // generic function sending messages
 function sendMessage(recipientId, message) {
     request({
@@ -29,20 +50,4 @@ function sendMessage(recipientId, message) {
             console.log('Error: ', response.body.error);
         }
     });
-}
-
-// Facebook Webhook
-app.get('/webhook', function (req, res) {
-    if (req.query['hub.verify_token'] === 'testbot_verify_token') {
-        var events = req.body.entry[0].messaging;
-        for (i = 0; i < events.length; i++) {
-            var event = events[i];
-            if (event.message && event.message.text) {
-                sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
-            }
-        }
-        res.sendStatus(200);
-    } else {
-        res.send('Invalid verify token');
-    }
-});
+};
