@@ -1,0 +1,28 @@
+{
+  "name": "annoying-bot-messenger",
+  "version": "0.0.1",
+  "description": "an annoying answering question bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanekotic/annoying-bot-messenger.git"
+  },
+  "keywords": [
+    "bot",
+    "messenger"
+  ],
+  "author": "kanekotic <alvarojosepl@gmail.com> (https://github.com/kanekotic)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kanekotic/annoying-bot-messenger/issues"
+  },
+  "homepage": "https://github.com/kanekotic/annoying-bot-messenger#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "request": "^2.72.0"
+  }
+}
