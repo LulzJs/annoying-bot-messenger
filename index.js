@@ -36,7 +36,7 @@ app.post('/webhook', function (req, res) {
 function analizeMessage(event, message) {
     var response = { text: "" };
     if (/hola/i.test(message.text))
-        response.text += "hola " + JSON.stringify(message.sender);
+        response.text += "hola " + JSON.stringify(event.sender);
     else
         response.text += "no te he entendido, lo siento, preguntame algo mas";
     sendMessage(event.sender.id, response);
