@@ -1,2 +1,2 @@
-#Annoying Bot
-Example project regarding how to do that echo messages from facebook.
+#El Cabrito Bot
+chat bot for messenger for el cabrito project
