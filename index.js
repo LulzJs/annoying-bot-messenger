@@ -27,8 +27,7 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if (event.message && event.message.text) {
-            var response  = analizeMessage(event.message);
-            sendMessage(event.sender.id, response);
+            analizeMessage(event.message);
         }
     }
     res.sendStatus(200);
@@ -39,9 +38,9 @@ function analizeMessage(message) {
     if (/hola/i.test(message.text))
         response.text += "hola " + message.sender.name;
     else
-        response.text += "no te he entendido, lo siento, preguntame algo mas"
-    return response;
-};
+        response.text += "no te he entendido, lo siento, preguntame algo mas";
+    sendMessage(event.sender.id, response);
+}
 
 function sendMessage(recipientId, message) {
     request({
@@ -59,4 +58,4 @@ function sendMessage(recipientId, message) {
             console.log('Error: ', response.body.error);
         }
     });
-};
+}
