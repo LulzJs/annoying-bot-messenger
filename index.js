@@ -56,7 +56,7 @@ function analizeMessage(event, message) {
                                 }, {
                                 "type": "postback",
                                 "title": "hacer una reserva",
-                                "payload": "User " + recipientId + " wants to reserve " + 'http://www.restaurantedeloreto.com/',
+                                "payload": "User " + event.sender.id + " wants to reserve " + 'http://www.restaurantedeloreto.com/',
                             }]
                         }]
                     }
