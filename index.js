@@ -37,6 +37,10 @@ function analizeMessage(event, message) {
     var response = { text: "" };
     if (/hola/i.test(message.text))
         response.text += "hola";
+    if (/como.*estas/i.test(message.text))
+        response.text += "bien, y tu?";
+    if (/estoy.*bien/i.test(message.text))
+        response.text += "me alegro, en que puedo ayudarte?";
     if (/donde.*comer/i.test(message.text))
     {
         url =
