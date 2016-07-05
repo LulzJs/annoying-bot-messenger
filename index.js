@@ -36,30 +36,29 @@ app.post('/webhook', function (req, res) {
 function analizeMessage(event, message) {
     var response = { text: "" };
     if (/hola/i.test(message.text))
-        response.text += "hola";
+        response.text += "Hola";
     if (/como.*estas/i.test(message.text))
-        response.text += "bien, y tu?";
+        response.text += "Bien, y tu?";
     if (/estoy.*bien/i.test(message.text))
-        response.text += "me alegro, en que puedo ayudarte?";
+        response.text += "Me alegro, en que puedo ayudarte?";
     if (/donde.*comer/i.test(message.text))
     {
-        url =
         response = {
                 "attachment": {
                     "type": "template",
                     "payload": {
                         "template_type": "generic",
                         "elements": [{
-                            "title": "Restaurante el cabrito",
+                            "title": "Restaurante El Cabrito",
                             "subtitle": "los mejores platos de cabrito con patatas",
                             "image_url": 'http://www.vinowine.es/wp-content/uploads/2013/01/Restaurante-de-Loreto-en-Jumilla-patio.jpg' ,
                             "buttons": [{
                                 "type": "web_url",
                                 "url": 'http://www.restaurantedeloreto.com/',
-                                "title": "ir a la web"
+                                "title": "Ir a la web"
                                 }, {
                                 "type": "postback",
-                                "title": "hacer una reserva",
+                                "title": "Hacer una reserva",
                                 "payload": "User " + event.sender.id + " wants to reserve " + 'http://www.restaurantedeloreto.com/',
                             }]
                         }]
@@ -68,7 +67,7 @@ function analizeMessage(event, message) {
             };
     }
     if(response.text === "")
-        response.text += "no te he entendido, lo siento, preguntame algo diferente";
+        response.text += "No te he entendido, lo siento, preguntame algo diferente";
     sendMessage(event.sender.id, response);
 }
 
