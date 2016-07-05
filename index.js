@@ -27,13 +27,22 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if (event.message && event.message.text) {
-            sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
+            var response  = analizeMessage(event.message);
+            sendMessage(event.sender.id, response);
         }
     }
     res.sendStatus(200);
 });
 
-// generic function sending messages
+function analizeMessage(message) {
+    var response = { text: "" };
+    if (/hola/i.test(message.text))
+        response.text += "hola " + message.sender.name;
+    else
+        response.text += "no te he entendido, lo siento, preguntame algo mas"
+    return response;
+};
+
 function sendMessage(recipientId, message) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
