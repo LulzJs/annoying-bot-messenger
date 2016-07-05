@@ -38,7 +38,31 @@ function analizeMessage(event, message) {
     if (/hola/i.test(message.text))
         response.text += "hola";
     if (/donde.*comer/i.test(message.text))
-        response.text += "puedes comer en este restaurante blah blah blah";
+    {
+        url =
+        response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [{
+                            "title": "Restaurante el cabrito",
+                            "subtitle": "los mejores platos de cabrito con patatas",
+                            "image_url": 'http://www.vinowine.es/wp-content/uploads/2013/01/Restaurante-de-Loreto-en-Jumilla-patio.jpg' ,
+                            "buttons": [{
+                                "type": "web_url",
+                                "url": 'http://www.restaurantedeloreto.com/',
+                                "title": "ir a la web"
+                                }, {
+                                "type": "postback",
+                                "title": "hacer una reserva",
+                                "payload": "User " + recipientId + " wants to reserve " + 'http://www.restaurantedeloreto.com/',
+                            }]
+                        }]
+                    }
+                }
+            };
+    }
     if(response.text === "")
         response.text += "no te he entendido, lo siento, preguntame algo diferente";
     sendMessage(event.sender.id, response);
