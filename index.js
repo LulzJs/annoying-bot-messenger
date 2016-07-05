@@ -27,13 +27,13 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if (event.message && event.message.text) {
-            analizeMessage(event.message);
+            analizeMessage(event, event.message);
         }
     }
     res.sendStatus(200);
 });
 
-function analizeMessage(message) {
+function analizeMessage(event, message) {
     var response = { text: "" };
     if (/hola/i.test(message.text))
         response.text += "hola " + JSON.stringify(message.sender);
